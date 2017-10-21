@@ -8,6 +8,7 @@
     <table>
         <thead>
             <tr>
+                <th></th>
                 <th>{{ 'name'|trans }}</th>
                 <th>{{ 'is_active'|trans }}</th>
             </tr>
@@ -15,12 +16,13 @@
         <tbody>
             {% for priceTable in priceTables %}
                 <tr>
+                    <td><a href="{{ path('edit_price_table', {'id': priceTable.id}) }}">{{ 'edit'|trans }}</a></td>
                     <td>{{ priceTable.name }}</td>
                     <td>{{ priceTable.isActive }}</td>
                 </tr>
             {% else %}
                 <tr>
-                    <td colspan="2">{{ 'no_results'|trans }}</td>
+                    <td colspan="3">{{ 'no_results'|trans }}</td>
                 </tr>
             {% endfor %}
         </tbody>

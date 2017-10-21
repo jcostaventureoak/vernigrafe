@@ -20,6 +20,18 @@ class PriceTableManager extends AbstractManager
     }
 
     /**
+     * Finds an entity by its primary key / identifier.
+     *
+     * @param int $id
+     *
+     * @return array
+     */
+    public function find($id)
+    {
+        return $this->priceTableRepository->find($id);
+    }
+
+    /**
      * Finds all entities in the repository.
      *
      * @return array

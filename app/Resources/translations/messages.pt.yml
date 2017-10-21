@@ -5,6 +5,7 @@ create_customer: Criar cliente
 create_price_table: Criar tabela de preços
 
 create: Criar
+edit: Editar
 
 email: e-mail
 name: Nome

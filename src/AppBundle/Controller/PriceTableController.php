@@ -72,4 +72,37 @@ class PriceTableController extends Controller
             ['form' => $form->createView()]
         );
     }
+
+    /**
+     * @Route("/price-tables/edit/{id}", name="edit_price_table", methods={"GET", "POST"})
+     *
+     * @param Request $request
+     * @param int $id
+     *
+     * @return Response
+     */
+    public function editAction(Request $request, $id)
+    {
+        $priceTable = $this->priceTableManager->find($id);
+
+        if (!$priceTable) {
+            throw new NotFoundHttpException('Price Table not found.');
+        }
+
+        $form = $this->createForm(PriceTableType::class, $priceTable)
+            ->add('save', SubmitType::class, ['label' => 'new']);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->priceTableManager->create($priceTable);
+
+            return $this->redirectToRoute('list_price_table');
+        }
+
+        return $this->render(
+            'priceTable/new.html.twig',
+            ['form' => $form->createView()]
+        );
+    }
 }

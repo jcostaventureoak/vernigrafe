@@ -11,6 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * @Route(service="app.controller.customer")
@@ -55,6 +56,39 @@ class CustomerController extends Controller
     public function newAction(Request $request)
     {
         $customer = new Customer();
+
+        $form = $this->createForm(CustomerType::class, $customer)
+            ->add('save', SubmitType::class, ['label' => 'new']);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->customerManager->create($customer);
+
+            return $this->redirectToRoute('list_customer');
+        }
+
+        return $this->render(
+            'customer/new.html.twig',
+            ['form' => $form->createView()]
+        );
+    }
+
+    /**
+     * @Route("/customers/edit/{id}", name="edit_customer", methods={"GET", "POST"})
+     *
+     * @param Request $request
+     * @param int $id
+     *
+     * @return Response
+     */
+    public function editAction(Request $request, $id)
+    {
+        $customer = $this->customerManager->find($id);
+
+        if (!$customer) {
+            throw new NotFoundHttpException('Customer not found.');
+        }
 
         $form = $this->createForm(CustomerType::class, $customer)
             ->add('save', SubmitType::class, ['label' => 'new']);
