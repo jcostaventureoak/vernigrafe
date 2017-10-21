@@ -1,0 +1,10 @@
+services:
+    app.controller.customer:
+        class: AppBundle\Controller\CustomerController
+        calls:
+            - [setCustomerManager, ["@app.manager.customer"]]
+
+    app.controller.price_table:
+        class: AppBundle\Controller\PriceTableController
+        calls:
+            - [setPriceTableManager, ["@app.manager.price_table"]]

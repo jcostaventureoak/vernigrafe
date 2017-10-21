@@ -1,0 +1,14 @@
+customers: Clientes
+price_table: Tabela de preços
+
+create_customer: Criar cliente
+create_price_table: Criar tabela de preços
+
+create: Criar
+
+email: e-mail
+name: Nome
+vat: NIF
+is_active: Activo
+
+no_results: Não existem registos.

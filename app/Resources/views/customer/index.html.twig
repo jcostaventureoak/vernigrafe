@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1 xmlns="http://www.w3.org/1999/html">{{ 'customers'|trans }}</h1>
+
+    <a href="{{ path('new_customer') }}">{{ 'create'|trans }}</a>
+
+    <table>
+        <thead>
+            <tr>
+                <th>{{ 'name'|trans }}</th>
+                <th>{{ 'email'|trans }}</th>
+                <th>{{ 'vat'|trans }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for customer in customers %}
+                <tr>
+                    <td>{{ customer.name }}</td>
+                    <td>{{ customer.email }}</td>
+                    <td>{{ customer.vat }}</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3">{{ 'no_results'|trans }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

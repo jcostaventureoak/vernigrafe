@@ -1,0 +1,17 @@
+services:
+    app.manager.abstract:
+        class: AppBundle\Manager\AbstractManager
+        abstract: true
+        arguments: ["@doctrine.orm.entity_manager", "@event_dispatcher"]
+
+    app.manager.customer:
+        class: AppBundle\Manager\CustomerManager
+        parent: app.manager.abstract
+        calls:
+            - [setCustomerRepository, ["@app.repository.customer"]]
+
+    app.manager.price_table:
+        class: AppBundle\Manager\PriceTableManager
+        parent: app.manager.abstract
+        calls:
+            - [setPriceTableRepository, ["@app.repository.price_table"]]

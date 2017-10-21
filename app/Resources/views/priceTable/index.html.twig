@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1 xmlns="http://www.w3.org/1999/html">{{ 'price_table'|trans }}</h1>
+
+    <a href="{{ path('new_price_table') }}">{{ 'create'|trans }}</a>
+
+    <table>
+        <thead>
+            <tr>
+                <th>{{ 'name'|trans }}</th>
+                <th>{{ 'is_active'|trans }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for priceTable in priceTables %}
+                <tr>
+                    <td>{{ priceTable.name }}</td>
+                    <td>{{ priceTable.isActive }}</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="2">{{ 'no_results'|trans }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
