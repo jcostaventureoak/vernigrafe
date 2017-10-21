@@ -21,7 +21,7 @@ class Customer
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
@@ -30,7 +30,7 @@ class Customer
      *
      * @Assert\NotBlank()
      */
-    private $name;
+    protected $name;
 
     /**
      * @var string
@@ -39,14 +39,21 @@ class Customer
      *
      * @Assert\Email()
      */
-    private $email;
-
+    protected $email;
     /**
      * @var string
      *
      * @ORM\Column(type="string", length=50, nullable=true, unique=true)
      */
-    private $vat;
+    protected $vat;
+
+    /**
+     * @var PriceTable
+     *
+     * @ORM\ManyToOne(targetEntity="PriceTable")
+     * @ORM\JoinColumn()
+     */
+    protected $priceTable;
 
     /**
      * @return int
@@ -114,5 +121,25 @@ class Customer
     public function getVat()
     {
         return $this->vat;
+    }
+
+    /**
+     * @param PriceTable $priceTable
+     *
+     * @return Customer
+     */
+    public function setPriceTable(PriceTable $priceTable = null)
+    {
+        $this->priceTable = $priceTable;
+
+        return $this;
+    }
+
+    /**
+     * @return PriceTable
+     */
+    public function getPriceTable()
+    {
+        return $this->priceTable;
     }
 }

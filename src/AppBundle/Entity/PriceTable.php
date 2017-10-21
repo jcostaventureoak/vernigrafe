@@ -21,7 +21,7 @@ class PriceTable
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
@@ -30,7 +30,7 @@ class PriceTable
      *
      * @Assert\NotBlank()
      */
-    private $name;
+    protected $name;
 
     /**
      * @var bool
@@ -38,6 +38,14 @@ class PriceTable
      * @ORM\Column(type="boolean")
      */
     protected $isActive;
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->name;
+    }
 
     /**
      * @return int

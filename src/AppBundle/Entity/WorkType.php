@@ -17,14 +17,14 @@ class WorkType
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
      *
      * @ORM\Column(type="string")
      */
-    private $name;
+    protected $name;
 
     /**
      * Get id

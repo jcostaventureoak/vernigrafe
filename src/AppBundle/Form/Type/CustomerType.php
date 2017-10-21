@@ -16,7 +16,8 @@ class CustomerType extends AbstractType
     {
         $builder->add('name')
             ->add('email')
-            ->add('vat');
+            ->add('vat')
+            ->add('priceTable');
     }
 
     /**
